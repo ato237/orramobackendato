@@ -127,31 +127,50 @@ public class Calculate {
         return OrangeCharge + orangeValue;
     }
 
+    int getCharge(int value){
+        if (value >= 50 && value <= 6500) {
+            value = value * 3 / 100;
+        } else if (value >= 6501 && value <= 10000) {
+            value = 180;
+        } else if (value >= 10001 && value <= 13500) {
+            value = 300;
+        } else if (value >= 13501 && value <= 25000) {
+            value = 350;
+        } else if (value >= 25001 && value <= 50000) {
+            value = 700;
+        } else if (value >= 50001 && value <= 80000) {
+            value = 1350;
+        } else if (value >= 80001 && value <= 100000) {
+            value = 1800;
+        } else if (value >= 100001 && value <= 200000) {
+            value = 2150;
+        } else if (value >= 200001 && value <= 300000) {
+            value = 2600;
+        } else if (value >= 300001 && value <= 400000) {
+            value = 3100;
+        } else if (value >= 400000 && value <= 500001) {
+            value = 3600;
+        }
+        return value;
+    }
     public int getOrangeCharge() {
           switch (status){
               case "withdraw":
-                  if (orangeValue >= 50 && orangeValue <= 6500) {
-                          OrangeCharge = orangeValue * 3 / 100;
-                  } else if (orangeValue >= 6501 && orangeValue <= 10000) {
-                      OrangeCharge = 180;
-                  } else if (orangeValue >= 10001 && orangeValue <= 13500) {
-                      OrangeCharge = 300;
-                  } else if (orangeValue >= 13501 && orangeValue <= 25000) {
-                      OrangeCharge = 350;
-                  } else if (orangeValue >= 25001 && orangeValue <= 50000) {
-                      OrangeCharge = 700;
-                  } else if (orangeValue >= 50001 && orangeValue <= 80000) {
-                      OrangeCharge = 1350;
-                  } else if (orangeValue >= 80001 && orangeValue <= 100000) {
-                      OrangeCharge = 1800;
-                  } else if (orangeValue >= 100001 && orangeValue <= 200000) {
-                      OrangeCharge = 2150;
-                  } else if (orangeValue >= 200001 && orangeValue <= 300000) {
-                      OrangeCharge = 2600;
-                  } else if (orangeValue >= 300001 && orangeValue <= 400000) {
-                      OrangeCharge = 3100;
-                  } else if (orangeValue >= 400000 && orangeValue <= 500001) {
-                      OrangeCharge = 3600;
+                  int times = orangeValue /500000;
+                  if (orangeValue > 500001) {
+                      int val = 0;
+                      do {
+
+                          for (int i = 0; i < times; i++) {
+                              int excess = orangeValue - 499999;
+                              val += getCharge(excess) + getCharge(orangeValue - excess);
+                              orangeValue -= 499999;
+                          }
+                      }while (orangeValue>500000);
+                      OrangeCharge =val;
+
+                  }else{
+                      OrangeCharge = getCharge(orangeValue);
                   }
                   break;
               case "send":

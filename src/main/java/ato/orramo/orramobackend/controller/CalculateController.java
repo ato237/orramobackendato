@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
+
 @RestController
-@RequestMapping(path = "api/calculate")
+@CrossOrigin(origins = "http://localhost:8082")
+@RequestMapping(path = "api/calculate/")
 public class CalculateController {
     private final CalculateService calculateService;
    private Calculate calculate;
@@ -26,5 +29,10 @@ public class CalculateController {
     @PostMapping({"mtn/{value}/{status}"})
     public List<Calculate> getMtnCharge(@PathVariable int value, @PathVariable String status){
         return calculateService.getMtnValue(value,status);
+    }
+    @GetMapping("get")
+    public List<Calculate> getData(){
+
+        return calculateService.getValue();
     }
 }

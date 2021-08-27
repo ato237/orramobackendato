@@ -22,4 +22,10 @@ public class CalculateService {
                 cal.getMtnValue(),cal.getMtnCharge(),
                 cal.getMtnTotal(),cal.getOrangeTotal(),cal.getOrangeCharge(),cal.getStatus()));
     }
+    public List<Calculate> getValue(){
+
+        return List.of(new Calculate(cal.getOrangeValue(),
+                cal.getMtnValue(),cal.getMtnCharge(),
+                cal.getMtnTotal(),cal.getOrangeTotal(),cal.getOrangeCharge(),cal.getStatus()));
+    }
 }
