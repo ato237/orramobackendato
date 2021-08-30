@@ -127,7 +127,7 @@ public class Calculate {
         return OrangeCharge + orangeValue;
     }
 
-    int getCharge(int value){
+    int getWithdrawCharge(int value){
         if (value >= 50 && value <= 6500) {
             value = value * 3 / 100;
         } else if (value >= 6501 && value <= 10000) {
@@ -156,21 +156,15 @@ public class Calculate {
     public int getOrangeCharge() {
           switch (status){
               case "withdraw":
-                  int times = orangeValue /500000;
-                  if (orangeValue > 500001) {
-                      int val = 0;
-                      do {
-
-                          for (int i = 0; i < times; i++) {
-                              int excess = orangeValue - 499999;
-                              val += getCharge(excess) + getCharge(orangeValue - excess);
-                              orangeValue -= 499999;
-                          }
-                      }while (orangeValue>500000);
-                      OrangeCharge =val;
+                  int times = orangeValue %500000;
+                  if (orangeValue > 500001)
+                  {
+                      int divident = orangeValue / 500001;
+                     int extra = orangeValue % 500001;
+                    OrangeCharge = (getWithdrawCharge(500001) * divident) + getWithdrawCharge(extra);
 
                   }else{
-                      OrangeCharge = getCharge(orangeValue);
+                      OrangeCharge = getWithdrawCharge(orangeValue);
                   }
                   break;
               case "send":
