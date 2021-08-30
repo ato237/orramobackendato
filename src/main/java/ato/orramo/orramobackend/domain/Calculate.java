@@ -13,12 +13,13 @@ public class Calculate {
     private int OrangeCharge;
     private String status;
 
-    public Calculate(){
+    public Calculate() {
 
     }
-    public Calculate(int orangeValue, int mtnValue,  int mtnCharge,
+
+    public Calculate(int orangeValue, int mtnValue, int mtnCharge,
                      int mtnTotal, int orangeTotal,
-                     int OrangeCharge,String status) {
+                     int OrangeCharge, String status) {
         this.orangeValue = orangeValue;
         this.mtnValue = mtnValue;
         this.mtnCharge = mtnCharge;
@@ -28,62 +29,87 @@ public class Calculate {
         this.status = status;
     }
 
+    int getWithdrawMtn(int value) {
+        if (value >= 100 && value <= 5550) {
+            value = value * 3 / 100;
+        } else if (value >= 5551 && value <= 10050) {
+            value = 175;
+        } else if (value >= 10051 && value <= 13550) {
+            value = 300;
+        } else if (value >= 13551 && value <= 25050) {
+            value = 350;
+        } else if (value >= 25051 && value <= 50050) {
+            value = 700;
+        } else if (value >= 50051 && value <= 75100) {
+            value = 1350;
+        } else if (value >= 75101 && value <= 100100) {
+            value = 1800;
+        } else if (value >= 100101 && value <= 200500) {
+            value = 2150;
+        } else if (value >= 200501 && value <= 300500) {
+            value = 2600;
+        } else if (value >= 300501 && value <= 400500) {
+            value = 3100;
+        } else if (value >= 400501 && value <= 500000) {
+            value = 3500;
+        }
+        return value;
+    }
+
+    int getSendingMtn(int value) {
+        if (value >= 100 && value <= 5550) {
+            value = value * 1 / 100;
+        } else if (value >= 5551 && value <= 10050) {
+            value = 50;
+        } else if (value >= 10051 && value <= 13550) {
+            value = 100;
+        } else if (value >= 13551 && value <= 25050) {
+            value = 100;
+        } else if (value >= 25051 && value <= 50050) {
+            value = 100;
+        } else if (value >= 50051 && value <= 75100) {
+            value = 250;
+        } else if (value >= 75101 && value <= 100100) {
+            value = 250;
+        } else if (value >= 100101 && value <= 200500) {
+            value = 250;
+        } else if (value >= 200501 && value <= 300500) {
+            value = 250;
+        } else if (value >= 300501 && value <= 400500) {
+            value = 250;
+        } else if (value >= 400501 && value <= 500000) {
+            value = 500;
+        } else if (value >= 500001 && value <= 1000000) {
+            value = 500;
+        }
+
+        return value;
+    }
+
     public int getMtnCharge() {
-        switch (status){
+        switch (status) {
             case "withdraw":
-                if (mtnValue >= 100 && mtnValue <= 5550) {
-                    mtnCharge = mtnValue * 3 / 100;
-                } else if (mtnValue >= 5551 && mtnValue <= 10050) {
-                    mtnCharge = 175;
-                } else if (mtnValue >= 10051 && mtnValue <= 13550) {
-                    mtnCharge = 300;
-                } else if (mtnValue >= 13551 && mtnValue <= 25050) {
-                    mtnCharge = 350;
-                } else if (mtnValue >= 25051 && mtnValue <= 50050) {
-                    mtnCharge = 700;
-                } else if (mtnValue >= 50051 && mtnValue <= 75100) {
-                    mtnCharge = 1350;
-                } else if (mtnValue >= 75101 && mtnValue <= 100100) {
-                    mtnCharge = 1800;
-                } else if (mtnValue >= 100101 && mtnValue <= 200500) {
-                    mtnCharge = 2150;
-                } else if (mtnValue >= 200501 && mtnValue <= 300500) {
-                    mtnCharge = 2600;
-                } else if (mtnValue >= 300501 && mtnValue <= 400500) {
-                    mtnCharge = 3100;
-                } else if (mtnValue >= 400501 && mtnValue <= 500000) {
-                    mtnCharge = 3500;
+                int times = mtnValue % 500000;
+                if (mtnValue > 500000) {
+                    int divident = mtnValue / 500000;
+                    int extra = mtnValue % 500000;
+                    mtnCharge = (getWithdrawMtn(500000) * divident) + getWithdrawMtn(extra);
+
+                } else {
+                    mtnCharge = getWithdrawMtn(mtnValue);
                 }
                 break;
             case "send":
-                if (mtnValue >= 100 && mtnValue <= 5550) {
-                    mtnValue = mtnValue * 1 / 100;
-                } else if (mtnValue >= 5551 && mtnValue <= 10050) {
-                    mtnCharge = 50;
-                } else if (mtnValue >= 10051 && mtnValue <= 13550) {
-                    mtnCharge = 100;
-                } else if (mtnValue >= 13551 && mtnValue <= 25050) {
-                    mtnCharge = 100;
-                } else if (mtnValue >= 25051 && mtnValue <= 50050) {
-                    mtnCharge = 100;
-                } else if (mtnValue >= 50051 && mtnValue <= 75100) {
-                    mtnCharge = 250;
-                } else if (mtnValue >= 75101 && mtnValue <= 100100) {
-                    mtnCharge = 250;
-                } else if (mtnValue >= 100101 && mtnValue <= 200500) {
-                    mtnCharge = 250;
-                } else if (mtnValue >= 200501 && mtnValue <= 300500) {
-                    mtnCharge = 250;
-                } else if (mtnValue >= 300501 && mtnValue <= 400500) {
-                    mtnCharge = 250;
-                } else if (mtnValue >= 400501 && mtnValue <= 500000) {
-                    mtnCharge = 500;
-                }
-                else if (mtnValue >= 500001 && mtnValue <= 1000000) {
-                    mtnCharge = 500;
-                }
-        }
+                if (mtnValue > 500000) {
+                    int divident = mtnValue / 500000;
+                    int extra = mtnValue % 500000;
+                    mtnCharge = (getSendingMtn(500000) * divident) + getSendingMtn(extra);
 
+                } else {
+                    mtnCharge = getSendingMtn(mtnValue);
+                }
+
+        }
         return mtnCharge;
     }
 
@@ -127,7 +153,7 @@ public class Calculate {
         return OrangeCharge + orangeValue;
     }
 
-    int getWithdrawCharge(int value){
+    int getWithdrawCharge(int value) {
         if (value >= 50 && value <= 6500) {
             value = value * 3 / 100;
         } else if (value >= 6501 && value <= 10000) {
@@ -153,48 +179,61 @@ public class Calculate {
         }
         return value;
     }
+
+    int getSendingCharge(int mtnvalue) {
+
+        if (mtnvalue >= 50 && mtnvalue <= 6500) {
+            mtnvalue = mtnvalue * 1 / 100;
+        } else if (mtnvalue >= 6501 && mtnvalue <= 10000) {
+            mtnvalue = 50;
+        } else if (mtnvalue >= 10001 && mtnvalue <= 13500) {
+            mtnvalue = 100;
+        } else if (mtnvalue >= 13501 && mtnvalue <= 25000) {
+            mtnvalue = 150;
+        } else if (mtnvalue >= 25001 && mtnvalue <= 50000) {
+            mtnvalue = 150;
+        } else if (mtnvalue >= 50001 && mtnvalue <= 80000) {
+            mtnvalue = 200;
+        } else if (mtnvalue >= 80001 && mtnvalue <= 100000) {
+            mtnvalue = 300;
+        } else if (mtnvalue >= 100001 && mtnvalue <= 200000) {
+            mtnvalue = 300;
+        } else if (mtnvalue >= 200001 && mtnvalue <= 300000) {
+            mtnvalue = 300;
+        } else if (mtnvalue >= 300001 && mtnvalue <= 400000) {
+            mtnvalue = 300;
+        } else if (mtnvalue >= 400000 && mtnvalue <= 500001) {
+            mtnvalue = 500;
+        } else if (mtnvalue >= 500001 && mtnvalue <= 1000000) {
+            mtnvalue = 500;
+        }
+        return mtnvalue;
+
+    }
+
     public int getOrangeCharge() {
-          switch (status){
-              case "withdraw":
-                  int times = orangeValue %500000;
-                  if (orangeValue > 500001)
-                  {
-                      int divident = orangeValue / 500001;
-                     int extra = orangeValue % 500001;
+        switch (status) {
+            case "withdraw":
+                if (orangeValue > 500001) {
+                    int divident = orangeValue / 500001;
+                    int extra = orangeValue % 500001;
                     OrangeCharge = (getWithdrawCharge(500001) * divident) + getWithdrawCharge(extra);
 
-                  }else{
-                      OrangeCharge = getWithdrawCharge(orangeValue);
-                  }
-                  break;
-              case "send":
-                  if (orangeValue >= 50 && orangeValue <= 6500) {
-                      OrangeCharge = orangeValue * 1 / 100;
-                  } else if (orangeValue >= 6501 && orangeValue <= 10000) {
-                      OrangeCharge = 50;
-                  } else if (orangeValue >= 10001 && orangeValue <= 13500) {
-                      OrangeCharge = 100;
-                  } else if (orangeValue >= 13501 && orangeValue <= 25000) {
-                      OrangeCharge = 150;
-                  } else if (orangeValue >= 25001 && orangeValue <= 50000) {
-                      OrangeCharge = 150;
-                  } else if (orangeValue >= 50001 && orangeValue <= 80000) {
-                      OrangeCharge = 200;
-                  } else if (orangeValue >= 80001 && orangeValue <= 100000) {
-                      OrangeCharge = 300;
-                  } else if (orangeValue >= 100001 && orangeValue <= 200000) {
-                      OrangeCharge = 300;
-                  } else if (orangeValue >= 200001 && orangeValue <= 300000) {
-                      OrangeCharge = 300;
-                  } else if (orangeValue >= 300001 && orangeValue <= 400000) {
-                      OrangeCharge = 300;
-                  } else if (orangeValue >= 400000 && orangeValue <= 500001) {
-                      OrangeCharge = 500;
-                  }
-                  else if (orangeValue >= 500001&& orangeValue <= 1000000){
-                  OrangeCharge = 500;
-              }
-          }
+                } else {
+                    OrangeCharge = getWithdrawCharge(orangeValue);
+                }
+                break;
+            case "send":
+                if (orangeValue > 500001) {
+                    int divident = orangeValue / 500001;
+                    int extra = orangeValue % 500001;
+                    OrangeCharge = (getSendingCharge(500001) * divident) + getSendingCharge(extra);
+
+                } else {
+                    OrangeCharge = getSendingCharge(orangeValue);
+                }
+
+        }
 
         return OrangeCharge;
 
@@ -212,4 +251,6 @@ public class Calculate {
     public void setStatus(String status) {
         this.status = status;
     }
+
+
 }
