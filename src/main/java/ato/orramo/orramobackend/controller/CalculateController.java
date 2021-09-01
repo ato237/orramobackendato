@@ -1,12 +1,12 @@
 package ato.orramo.orramobackend.controller;
 
-import ato.orramo.orramobackend.domain.Calculate;
-import ato.orramo.orramobackend.domain.CalculateService;
+import ato.orramo.orramobackend.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
+import java.util.List;
+import java.util.Set;
 
 
 @RestController
@@ -15,6 +15,8 @@ import java.util.List;
 public class CalculateController {
     private final CalculateService calculateService;
    private Calculate calculate;
+    @Autowired
+    private DataServiceImpl databaseService;
 
     @Autowired
     public CalculateController(CalculateService calculateService, Calculate calculate){
@@ -30,9 +32,10 @@ public class CalculateController {
     public List<Calculate> getMtnCharge(@PathVariable int value, @PathVariable String status){
         return calculateService.getMtnValue(value,status);
     }
-    @GetMapping("get")
-    public List<Calculate> getData(){
 
-        return calculateService.getValue();
+    @PostMapping({"/data"})
+    public String add( @RequestBody Database database){
+            databaseService.saveDatabase(database);
+        return "New Info Added";
     }
 }
