@@ -1,0 +1,1 @@
+web: java -jar target/C:\Users\ATO\IdeaProjects\orramobackendato\target\orramobackend-0.0.1-SNAPSHOT
