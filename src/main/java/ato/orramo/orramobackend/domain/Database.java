@@ -3,11 +3,11 @@ package ato.orramo.orramobackend.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "`datas`")
+@Table(name = "datas")
 public class Database {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="`dataid`",nullable = false, updatable = false)
+    @Column(name="dataid",nullable = false, updatable = false)
     private int dataid;
     private String email;
 
