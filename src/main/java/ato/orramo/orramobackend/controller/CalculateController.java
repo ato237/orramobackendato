@@ -10,7 +10,7 @@ import java.util.Set;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8082")
+@CrossOrigin(origins = "https://orramo-backend2.herokuapp.com/")
 @RequestMapping(path = "api/calculate/")
 public class CalculateController {
     private final CalculateService calculateService;
