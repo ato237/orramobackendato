@@ -8,8 +8,6 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 @SpringBootApplication
 public class OrramobackendApplication extends SpringBootServletInitializer {
 
-
-
         @Override
         protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
             return application.sources(OrramobackendApplication.class);
