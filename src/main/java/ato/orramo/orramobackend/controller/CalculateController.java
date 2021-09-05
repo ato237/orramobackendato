@@ -9,7 +9,6 @@ import java.util.List;
 
 
 @RestController
-@CrossOrigin(origins = "https://www.orramo.com/" )
 @RequestMapping(path = "api/calculate/")
 public class CalculateController {
     private final CalculateService calculateService;
