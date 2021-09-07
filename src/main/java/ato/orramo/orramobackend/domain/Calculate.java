@@ -30,9 +30,9 @@ public class Calculate {
     }
 
     int getWithdrawMtn(int value) {
-        if (value >= 100 && value <= 5550) {
+        if (value >= 100 && value <= 5999) {
             value = value * 3 / 100;
-        } else if (value >= 5551 && value <= 10050) {
+        } else if (value >= 6000 && value <= 10050) {
             value = 175;
         } else if (value >= 10051 && value <= 13550) {
             value = 300;
@@ -57,32 +57,21 @@ public class Calculate {
     }
 
     int getSendingMtn(int value) {
-        if (value >= 100 && value <= 5550) {
+        if (value >= 100 && value <= 5999) {
             value = value * 1 / 100;
-        } else if (value >= 5551 && value <= 10050) {
-            value = 50;
-        } else if (value >= 10051 && value <= 13550) {
+        } else if (value >= 6000 && value <= 13550) {
             value = 100;
-        } else if (value >= 13551 && value <= 25050) {
-            value = 100;
-        } else if (value >= 25051 && value <= 50050) {
-            value = 100;
+        } else if (value >= 13551 && value <= 50050) {
+            value = 150;
         } else if (value >= 50051 && value <= 75100) {
-            value = 250;
-        } else if (value >= 75101 && value <= 100100) {
-            value = 250;
-        } else if (value >= 100101 && value <= 200500) {
-            value = 250;
-        } else if (value >= 200501 && value <= 300500) {
-            value = 250;
-        } else if (value >= 300501 && value <= 400500) {
-            value = 250;
+            value = 200;
+        } else if (value >= 75101 && value <= 400500) {
+            value = 300;
         } else if (value >= 400501 && value <= 500000) {
-            value = 500;
-        } else if (value >= 500001 && value <= 1000000) {
-            value = 500;
+            value = 400;
+        } else if (value >= 500001 && value <= 1000000){
+            value =500;
         }
-
         return value;
     }
 
@@ -100,10 +89,10 @@ public class Calculate {
                 }
                 break;
             case "send":
-                if (mtnValue > 500000) {
-                    int divident = mtnValue / 500000;
-                    int extra = mtnValue % 500000;
-                    mtnCharge = (getSendingMtn(500000) * divident) + getSendingMtn(extra);
+                if (mtnValue > 1000000) {
+                    int divident = mtnValue / 1000000;
+                    int extra = mtnValue % 1000000;
+                    mtnCharge = (getSendingMtn(1000000) * divident) + getSendingMtn(extra);
 
                 } else {
                     mtnCharge = getSendingMtn(mtnValue);
@@ -224,10 +213,10 @@ public class Calculate {
                 }
                 break;
             case "send":
-                if (orangeValue > 500001) {
-                    int divident = orangeValue / 500001;
-                    int extra = orangeValue % 500001;
-                    OrangeCharge = (getSendingCharge(500001) * divident) + getSendingCharge(extra);
+                if (orangeValue > 1000000) {
+                    int divident = orangeValue / 1000000;
+                    int extra = orangeValue % 1000000;
+                    OrangeCharge = (getSendingCharge(1000000) * divident) + getSendingCharge(extra);
 
                 } else {
                     OrangeCharge = getSendingCharge(orangeValue);
