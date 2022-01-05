@@ -24,53 +24,59 @@ public class Calculate {
         this.mtnValue = mtnValue;
         this.mtnCharge = mtnCharge;
         this.mtnTotal = mtnTotal;
+
         this.orangeTotal = orangeTotal;
         this.OrangeCharge = OrangeCharge;
         this.status = status;
     }
 
     int getWithdrawMtn(int value) {
+
+        double tax =  ( value * 0.2/100);
+
         if (value >= 100 && value <= 5999) {
-            value = value * 3 / 100;
+            value = value * 3 / 100 + (int) tax;
         } else if (value >= 6000 && value <= 10050) {
-            value = 175;
+            value = 175 + (int) tax;
         } else if (value >= 10051 && value <= 13550) {
-            value = 300;
+            value = 300 + (int) tax;
         } else if (value >= 13551 && value <= 25050) {
-            value = 350;
+            value = 350 + (int) tax;
         } else if (value >= 25051 && value <= 50050) {
-            value = 700;
+            value = 700 + (int) tax;
         } else if (value >= 50051 && value <= 75100) {
-            value = 1350;
+            value = 1350 + (int) tax;
         } else if (value >= 75101 && value <= 100100) {
-            value = 1800;
+            value = 1800 + (int) tax;
         } else if (value >= 100101 && value <= 200500) {
-            value = 2150;
+            value = 2150 + (int) tax;
         } else if (value >= 200501 && value <= 300500) {
-            value = 2600;
+            value = 2600 + (int) tax;
         } else if (value >= 300501 && value <= 400500) {
-            value = 3100;
+            value = 3100 + (int) tax;
         } else if (value >= 400501 && value <= 500000) {
-            value = 3500;
+            value = 3500 + (int) tax;
         }
         return value;
     }
 
     int getSendingMtn(int value) {
-        if (value >= 100 && value <= 5999) {
-            value = value * 1 / 100;
+        double tax =  ( value * 0.2/100);
+
+        if (value >= 100 && value <= 10050) {
+            value = value * 1 / 100 + (int) tax;
         } else if (value >= 6000 && value <= 13550) {
-            value = 100;
+            value = 100 + (int) tax;
         } else if (value >= 13551 && value <= 50050) {
-            value = 150;
+            value = 150 + (int) tax;
         } else if (value >= 50051 && value <= 75100) {
-            value = 200;
+            value = 200 + (int) tax;
         } else if (value >= 75101 && value <= 400500) {
-            value = 300;
+            value = 300 + (int) tax;
         } else if (value >= 400501 && value <= 500000) {
-            value = 400;
+            value = 400 + (int) tax;
         } else if (value >= 500001 && value <= 1000000){
-            value =500;
+            value =500 + (int) tax;
         }
         return value;
     }
@@ -143,58 +149,52 @@ public class Calculate {
     }
 
     int getWithdrawCharge(int value) {
+
+      double tax =  ( value * 0.2/100);
         if (value >= 50 && value <= 6500) {
-            value = value * 3 / 100;
+            value = value * 3 / 100 + (int) tax;
         } else if (value >= 6501 && value <= 10000) {
-            value = 180;
+            value = 180 + (int) tax;
         } else if (value >= 10001 && value <= 13500) {
-            value = 300;
+            value = 300 + (int) tax;
         } else if (value >= 13501 && value <= 25000) {
-            value = 350;
+            value = 350 + (int) tax;
         } else if (value >= 25001 && value <= 50000) {
-            value = 700;
+            value = 700 + (int) tax;
         } else if (value >= 50001 && value <= 80000) {
-            value = 1350;
+            value = 1350 + (int) tax;
         } else if (value >= 80001 && value <= 100000) {
-            value = 1800;
+            value = 1800 + (int) tax;
         } else if (value >= 100001 && value <= 200000) {
-            value = 2150;
+            value = 2150 + (int) tax;
         } else if (value >= 200001 && value <= 300000) {
-            value = 2600;
+            value = 2600 + (int) tax;
         } else if (value >= 300001 && value <= 400000) {
-            value = 3100;
+            value = 3100 + (int) tax;
         } else if (value >= 400000 && value <= 500001) {
-            value = 3600;
+            value = 3600 + (int) tax;
         }
         return value;
     }
 
     int getSendingCharge(int mtnvalue) {
+        double tax =  ( mtnvalue * 0.2/100);
 
         if (mtnvalue >= 50 && mtnvalue <= 6500) {
-            mtnvalue = mtnvalue * 1 / 100;
+            mtnvalue = mtnvalue * 1 / 100  + (int) tax ;
         } else if (mtnvalue >= 6501 && mtnvalue <= 10000) {
-            mtnvalue = 50;
+            mtnvalue = 50 + (int) tax;
         } else if (mtnvalue >= 10001 && mtnvalue <= 13500) {
-            mtnvalue = 100;
-        } else if (mtnvalue >= 13501 && mtnvalue <= 25000) {
-            mtnvalue = 150;
-        } else if (mtnvalue >= 25001 && mtnvalue <= 50000) {
-            mtnvalue = 150;
-        } else if (mtnvalue >= 50001 && mtnvalue <= 80000) {
-            mtnvalue = 200;
-        } else if (mtnvalue >= 80001 && mtnvalue <= 100000) {
-            mtnvalue = 300;
-        } else if (mtnvalue >= 100001 && mtnvalue <= 200000) {
-            mtnvalue = 300;
-        } else if (mtnvalue >= 200001 && mtnvalue <= 300000) {
-            mtnvalue = 300;
-        } else if (mtnvalue >= 300001 && mtnvalue <= 400000) {
-            mtnvalue = 300;
-        } else if (mtnvalue >= 400000 && mtnvalue <= 500001) {
-            mtnvalue = 500;
-        } else if (mtnvalue >= 500001 && mtnvalue <= 1000000) {
-            mtnvalue = 500;
+            mtnvalue = 100 + (int) tax;
+        } else if (mtnvalue >= 13501 && mtnvalue <= 50000) {
+            mtnvalue = 150 + (int) tax;
+        }
+        else if (mtnvalue >= 50001 && mtnvalue <= 80000) {
+            mtnvalue = 200 + (int) tax;
+        } else if (mtnvalue >= 80001 && mtnvalue <= 400000) {
+            mtnvalue = 300 + (int) tax;
+        } else if (mtnvalue >= 400000 && mtnvalue <= 1000000) {
+            mtnvalue = 500 + (int) tax;
         }
         return mtnvalue;
 
