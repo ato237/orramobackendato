@@ -13,19 +13,28 @@ public class CalculateService {
         cal.setOrangeValue(value);
         return List.of(new Calculate(cal.getOrangeValue(),
                 cal.getMtnValue(),cal.getMtnCharge(),
-                cal.getMtnTotal(),cal.getOrangeTotal(),cal.getOrangeCharge(),cal.getStatus()));
+                cal.getMtnTotal(),cal.getOrangeTotal(),
+                cal.getOrangeCharge(),cal.getStatus(), cal.getMtnTax(),cal.getOrangeTax(),
+                cal.getEuTax(),cal.getEuValue(),cal.getEuTotal(),cal.getEuCharge()) );
     }
     public List<Calculate> getMtnValue(int value, String status){
         cal.setStatus(status);
         cal.setMtnValue(value);
         return List.of(new Calculate(cal.getOrangeValue(),
                 cal.getMtnValue(),cal.getMtnCharge(),
-                cal.getMtnTotal(),cal.getOrangeTotal(),cal.getOrangeCharge(),cal.getStatus()));
+                cal.getMtnTotal(),cal.getOrangeTotal(),cal.getOrangeCharge(),
+                cal.getStatus(), cal.getMtnTax(),cal.getOrangeTax(),cal.getEuTax(),
+                cal.getEuValue(),cal.getEuTotal(),cal.getEuCharge()));
     }
-    public List<Calculate> getValue(){
 
+    public List<Calculate> getEuValue(int value, String status){
+        cal.setStatus(status);
+        cal.setEuValue(value);
         return List.of(new Calculate(cal.getOrangeValue(),
                 cal.getMtnValue(),cal.getMtnCharge(),
-                cal.getMtnTotal(),cal.getOrangeTotal(),cal.getOrangeCharge(),cal.getStatus()));
+                cal.getMtnTotal(),cal.getOrangeTotal(),cal.getOrangeCharge(),
+                cal.getStatus(), cal.getMtnTax(),cal.getOrangeTax(),cal.getEuTax(),
+                cal.getEuValue(),cal.getEuTotal(),cal.getEuCharge()));
     }
+
 }
