@@ -1,6 +1,7 @@
 package ato.orramo.orramobackend.controller;
 
 import ato.orramo.orramobackend.domain.*;
+import com.posadskiy.currencyconverter.enums.Currency;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
