@@ -2,6 +2,7 @@ package ato.orramo.orramobackend.currency.service;
 
 import com.posadskiy.currencyconverter.CurrencyConverter;
 import com.posadskiy.currencyconverter.config.ConfigBuilder;
+import org.thymeleaf.spring5.util.SpringRequestUtils;
 
 import java.math.BigDecimal;
 
@@ -20,19 +21,29 @@ public class Convert {
     private BigDecimal Results;
     private String from;
     private String to;
+    private Boolean update;
 
     public Convert(){
 
     }
 
-    public Convert(Double amount, BigDecimal results, String from, String to) {
+    public Convert(Double amount, BigDecimal results, String from, String to,Boolean update) {
         Amount = amount;
         Results = results;
         this.from = from;
         this.to = to;
+        this.update = update;
     }
 
-    public void getConvertedValue(Double amount,String from, String to){
+    public Boolean getUpdate() {
+        return update;
+    }
+
+    public void setUpdate(Boolean update) {
+        this.update = update;
+    }
+
+    public void getConvertedValue(Double amount, String from, String to){
         Double FromToRate = converter.rate(from, to);
         Double converted = amount * FromToRate;
         BigDecimal result =  new BigDecimal(converted);

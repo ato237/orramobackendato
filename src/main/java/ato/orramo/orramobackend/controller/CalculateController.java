@@ -22,17 +22,18 @@ public class CalculateController {
     }
 
     @PostMapping({"orange/{value}/{status}"})
-    public List<Calculate> getOrangeCharge(@PathVariable int value, @PathVariable String status) {
-        return calculateService.getOrangeValue(value, status);
+    public List<Calculate> getOrangeCharge( @PathVariable long value, @PathVariable String status) {
+            return calculateService.getOrangeValue(value, status);
+
     }
 
     @PostMapping({"mtn/{value}/{status}"})
-    public List<Calculate> getMtnCharge(@PathVariable int value, @PathVariable String status) {
+    public List<Calculate> getMtnCharge(@PathVariable long value, @PathVariable String status) {
         return calculateService.getMtnValue(value, status);
     }
 
     @PostMapping({"eumoney/{value}/{status}"})
-    public List<Calculate> getEuCharge(@PathVariable int value, @PathVariable String status) {
+    public List<Calculate> getEuCharge(@PathVariable long value, @PathVariable String status) {
         return calculateService.getEuValue(value, status);
     }
 }

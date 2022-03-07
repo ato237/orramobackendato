@@ -5,29 +5,30 @@ import org.springframework.stereotype.Service;
 @Service
 public class Calculate {
 
-    private int mtnTax;
-    private int orangeTax;
-    private int orangeValue;
-    private int mtnValue;
-    private int mtnCharge;
-    private int mtnTotal;
-    private int orangeTotal;
-    private int OrangeCharge;
+    private long mtnTax;
+    private long orangeTax;
+    private long orangeValue;
+    private long mtnValue;
+    private long mtnCharge;
+    private long mtnTotal;
+    private long orangeTotal;
+    private long OrangeCharge;
     private String status;
-    private int euTax;
-    private int euValue;
-    private int euTotal;
-    private int euCharge;
+    private long euTax;
+    private long euValue;
+    private long euTotal;
+    private long euCharge;
+    private Boolean update;
 
 
     public Calculate() {
 
     }
 
-    public Calculate(int orangeValue, int mtnValue, int mtnCharge,
-                     int mtnTotal, int orangeTotal,
-                     int OrangeCharge, String status, int mtnTax, int orangeTax, int euTax, int euValue,
-                     int euTotal, int euCharge) {
+    public Calculate(long orangeValue, long mtnValue, long mtnCharge,
+                     long mtnTotal, long orangeTotal,
+                     long OrangeCharge, String status, long mtnTax, long orangeTax, long euTax, long euValue,
+                     long euTotal, long euCharge, Boolean update) {
         this.orangeValue = orangeValue;
         this.mtnValue = mtnValue;
         this.mtnCharge = mtnCharge;
@@ -41,209 +42,264 @@ public class Calculate {
         this.euCharge = euCharge;
         this.euTotal = euTotal;
         this.euValue = euValue;
+        this.update = update;
+    }
+
+    public Calculate(long orangeValue, long orangeTotal,
+                     long OrangeCharge, String status, long orangeTax, Boolean update) {
+        this.orangeValue = orangeValue;
+
+        this.orangeTax = orangeTax;
+        this.orangeTotal = orangeTotal;
+        this.OrangeCharge = OrangeCharge;
+        this.status = status;
+        this.update = update;
+
+
+    }
+
+    public Calculate(String status, long mtnTotal,
+                     long mtnCharge, long mtnTax, long mtnValue, Boolean update) {
+        this.mtnValue = mtnValue;
+        this.mtnTax = mtnTax;
+        this.mtnTotal = mtnTotal;
+        this.mtnCharge = mtnCharge;
+        this.status = status;
+        this.update = update;
+
+    }
+    public Calculate(long euTotal,
+                     long euCharge, long euTax, long euValue,String status, Boolean update) {
+        this.euValue = euValue;
+
+        this.euTax = euTax;
+        this.euTotal = euTotal;
+        this.euCharge = euCharge;
+        this.status = status;
+        this.update = update;
 
     }
 
 
-    public void setMtnCharge(int mtnCharge) {
+
+
+    public void setMtnCharge(long mtnCharge) {
         this.mtnCharge = mtnCharge;
     }
 
-    public int getMtnTotal() {
+    public long getMtnTotal() {
         return mtnValue + mtnCharge;
     }
 
-    public int getMtnTax() {
+    public long getMtnTax() {
         return mtnTax;
     }
 
-    public void setMtnTax(int mtnTax) {
+    public void setMtnTax(long mtnTax) {
         this.mtnTax = mtnTax;
     }
 
-    public int getOrangeTax() {
+    public long getOrangeTax() {
         return orangeTax;
     }
 
-    public void setOrangeTax(int orangeTax) {
+    public void setOrangeTax(long orangeTax) {
         this.orangeTax = orangeTax;
     }
 
-    public void setMtnTotal(int mtnTotal) {
+    public void setMtnTotal(long mtnTotal) {
         this.mtnTotal = mtnTotal;
     }
 
-    public void setOrangeTotal(int orangeTotal) {
+    public void setOrangeTotal(long orangeTotal) {
         this.orangeTotal = orangeTotal;
     }
 
-    public void setOrangeCharge(int orangeCharge) {
+    public void setOrangeCharge(long orangeCharge) {
         OrangeCharge = orangeCharge;
     }
 
-    public int getOrangeValue() {
+    public long getOrangeValue() {
         return orangeValue;
     }
 
-    public void setOrangeValue(int orangeValue) {
+    public void setOrangeValue(long orangeValue) {
         this.orangeValue = orangeValue;
     }
 
-    public int getMtnValue() {
+    public long getMtnValue() {
         return mtnValue;
     }
 
-    public void setMtnValue(int mtnValue) {
+    public void setMtnValue(long mtnValue) {
         this.mtnValue = mtnValue;
     }
 
-    public int getOrangeTotal() {
+    public long getOrangeTotal() {
         return OrangeCharge + orangeValue;
     }
 
-    int getWithdrawCharge(int value) {
+    long getWithdrawCharge(long value) {
 
       double tax =  ( value * 0.2/100);
         if (value >= 50 && value <= 6500) {
-            value = value * 3 / 100 + (int) tax;
+            value = value * 3 / 100 + (long) tax;
         } else if (value >= 6501 && value <= 10000) {
-            value = 180 + (int) tax;
+            value = 175 + (long) tax;
         } else if (value >= 10001 && value <= 13500) {
-            value = 300 + (int) tax;
+            value = 300 + (long) tax;
         } else if (value >= 13501 && value <= 25000) {
-            value = 350 + (int) tax;
+            value = 350 + (long) tax;
         } else if (value >= 25001 && value <= 50000) {
-            value = 700 + (int) tax;
+            value = 700 + (long) tax;
         } else if (value >= 50001 && value <= 80000) {
-            value = 1350 + (int) tax;
+            value = 1350 + (long) tax;
         } else if (value >= 80001 && value <= 100000) {
-            value = 1800 + (int) tax;
+            value = 1800 + (long) tax;
         } else if (value >= 100001 && value <= 200000) {
-            value = 2150 + (int) tax;
+            value = 2150 + (long) tax;
         } else if (value >= 200001 && value <= 300000) {
-            value = 2600 + (int) tax;
+            value = 2600 + (long) tax;
         } else if (value >= 300001 && value <= 400000) {
-            value = 3100 + (int) tax;
-        } else if (value >= 400000 && value <= 500001) {
-            value = 3600 + (int) tax;
+            value = 3100 + (long) tax;
+        } else if (value >= 400001 && value <= 500000) {
+            value = 3600 + (long) tax;
+        }
+        else if(value<50){
+            value = 0;
         }
         return value;
     }
 
-    int getSendingCharge(int value) {
+    long getSendingCharge(long value) {
         double tax =  ( value * 0.2/100);
         if (value >= 50 && value <= 6500) {
-            value = value * 1 / 100  + (int) tax ;
+            value = value * 1 / 100  + (long) tax ;
         } else if (value >= 6501 && value <= 10000) {
-            value = 50 + (int) tax;
+            value = 50 + (long) tax;
         } else if (value >= 10001 && value <= 13500) {
-            value = 100 + (int) tax;
+            value = 100 + (long) tax;
         } else if (value >= 13501 && value <= 50000) {
-            value = 150 + (int) tax;
+            value = 150 + (long) tax;
         }
         else if (value >= 50001 && value <= 80000) {
-            value = 200 + (int) tax;
+            value = 200 + (long) tax;
         } else if (value >= 80001 && value <= 400000) {
-            value = 300 + (int) tax;
-        } else if (value >= 400000 && value <= 1000000) {
-            value = 500 + (int) tax;
+            value = 300 + (long) tax;
+        } else if (value >= 400001 && value <= 1000000) {
+            value = 500 + (long) tax;
+        }
+        else if(value<50){
+            value = 0;
         }
         return value;
 
     }
 
-    int getNonTransferOrange(int value) {
+    long getNonTransferOrange(long value) {
         double tax =  ( value * 0.2/100);
 
         if (value >= 50 && value <= 6500) {
-            value = value * 4 / 100 + (int) tax;
+            value = value * 4 / 100 + (long) tax;
         } else if (value >= 6501 && value <= 10000) {
-            value = 250 + (int) tax;
+            value = 250 + (long) tax;
         } else if (value >= 10001 && value <= 13500) {
-            value = 400 + (int) tax;
+            value = 400 + (long) tax;
         } else if (value >= 13501 && value <= 25000) {
-            value = 525 + (int) tax;
+            value = 525 + (long) tax;
         } else if (value >= 25001 && value <= 50000) {
-            value = 900 + (int) tax;
+            value = 900 + (long) tax;
         } else if (value >= 50001 && value <= 80000) {
-            value = 1700 + (int) tax;
+            value = 1700 + (long) tax;
         } else if (value >= 80001 && value <= 100000) {
-            value = 2300 + (int) tax;
+            value = 2300 + (long) tax;
         } else if (value >= 100001 && value <= 200000) {
-            value = 2700 + (int) tax;
+            value = 2700 + (long) tax;
         } else if (value >= 200001 && value <= 300000) {
-            value = 3100 + (int) tax;
+            value = 3100 + (long) tax;
         } else if (value >= 300001 && value <= 400000) {
-            value = 3600 + (int) tax;
-        } else if (value >= 400000 && value <= 500001) {
-            value = 4000 + (int) tax;
+            value = 3600 + (long) tax;
+        } else if (value >= 400001 && value <= 500000) {
+            value = 4000 + (long) tax;
+        }
+        else if(value<50){
+            value = 0;
         }
         return value;
     }
-    int getWithdrawMtn(int value) {
+    long getWithdrawMtn(long value) {
 
         double tax =  ( value * 0.2/100);
         if (value >= 100 && value <= 5999) {
-            value = value * 3 / 100 + (int) tax;
+            value = value * 3 / 100 + (long) tax;
         } else if (value >= 6000 && value <= 10050) {
-            value = 175 + (int) tax;
+            value = 175 + (long) tax;
         } else if (value >= 10051 && value <= 13550) {
-            value = 300 + (int) tax;
+            value = 300 + (long) tax;
         } else if (value >= 13551 && value <= 25050) {
-            value = 350 + (int) tax;
+            value = 350 + (long) tax;
         } else if (value >= 25051 && value <= 50050) {
-            value = 700 + (int) tax;
+            value = 700 + (long) tax;
         } else if (value >= 50051 && value <= 75100) {
-            value = 1350 + (int) tax;
+            value = 1350 + (long) tax;
         } else if (value >= 75101 && value <= 100100) {
-            value = 1800 + (int) tax;
+            value = 1800 + (long) tax;
         } else if (value >= 100101 && value <= 200500) {
-            value = 2150 + (int) tax;
+            value = 2150 + (long) tax;
         } else if (value >= 200501 && value <= 300500) {
-            value = 2600 + (int) tax;
+            value = 2600 + (long) tax;
         } else if (value >= 300501 && value <= 400500) {
-            value = 3100 + (int) tax;
+            value = 3100 + (long) tax;
         } else if (value >= 400501 && value <= 500000) {
-            value = 3500 + (int) tax;
+            value = 3500 + (long) tax;
+        }
+        else if(value<50){
+            value = 0;
         }
         return value;
     }
 
-    int getSendingMtn(int value) {
+    long getSendingMtn(long value) {
         double tax =  ( value * 0.2/100);
-        if (value >= 100 && value <= 10050) {
-            value = value * 1 / 100 + (int) tax;
+        if (value >= 100 && value <= 5999) {
+            value = value * 1 / 100 + (long) tax;
         } else if (value >= 6000 && value <= 13550) {
-            value = 100 + (int) tax;
+            value = 100 + (long) tax;
         } else if (value >= 13551 && value <= 50050) {
-            value = 150 + (int) tax;
+            value = 150 + (long) tax;
         } else if (value >= 50051 && value <= 75100) {
-            value = 200 + (int) tax;
+            value = 200 + (long) tax;
         } else if (value >= 75101 && value <= 400500) {
-            value = 300 + (int) tax;
+            value = 300 + (long) tax;
         } else if (value >= 400501 && value <= 500000) {
-            value = 400 + (int) tax;
+            value = 400 + (long) tax;
         } else if (value >= 500001 && value <= 1000000){
-            value =500 + (int) tax;
+            value =500 + (long) tax;
+        }
+        else if(value<100){
+            value = 0;
         }
         return value;
     }
 
-    int getNonTransferMTN(int value) {
+    long getNonTransferMTN(long value) {
         double tax =  ( value * 0.2/100);
         if (value >= 100 && value <= 100100) {
-            value = value * 3 / 100 + (int) tax;
+            value = value * 3 / 100 + (long) tax;
         } else if (value >= 100101 && value <= 200500) {
-            value = 3100 + (int) tax;
+            value = 3100 + (long) tax;
         } else if (value >= 200501 && value <= 400500) {
-            value = 3500 + (int) tax;
-        } else if (value >= 400501 && value <= 500001) {
-            value = 4000 + (int) tax;
+            value = 3500 + (long) tax;
+        } else if (value >= 400501 && value <= 500000) {
+            value = 4000 + (long) tax;
+        }
+        else if(value<100){
+            value = 0;
         }
         return value;
     }
 
-    int getWithdrawEu(int value){
+    long getWithdrawEu(long value){
         if (value >= 100 && value <= 3000) {
             value = 100;
         } else if (value >= 3001 && value <= 10000) {
@@ -266,18 +322,21 @@ public class Calculate {
             value = 2300;
         } else if (value >= 300001 && value <= 400000) {
             value = 2400;
-        } else if (value >= 400001 && value <= 500001) {
+        } else if (value >= 400001 && value <= 500000) {
             value = 2500;
+        }
+        else if(value<50){
+            value = 0;
         }
         return value;
     }
 
-    int getSendingEU(int value) {
+    long getSendingEU(long value) {
         value = 0;
         return value;
     }
 
-    int getNonTransferEU(int value){
+    long getNonTransferEU(long value){
         if (value >= 100 && value <= 3000) {
             value = 150;
         } else if (value >= 3001 && value <= 10000) {
@@ -300,20 +359,23 @@ public class Calculate {
             value = 2300;
         } else if (value >= 300001 && value <= 400000) {
             value = 2400;
-        } else if (value >= 400001 && value <= 500001) {
+        } else if (value >= 400001 && value <= 500000) {
             value = 2500;
+        }
+        else if(value<100){
+            value = 0;
         }
         return value;
     }
-    public int getMtnCharge() {
-        setMtnTax((int) (getMtnValue() * 0.2/100));
+    public long getMtnCharge() {
+        setMtnTax((long) (getMtnValue() * 0.2/100));
 
         switch (status) {
             case "withdraw":
-                int times = mtnValue % 500000;
+                long times = mtnValue % 500000;
                 if (mtnValue > 500000) {
-                    int divident = mtnValue / 500000;
-                    int extra = mtnValue % 500000;
+                    long divident = mtnValue / 500000;
+                    long extra = mtnValue % 500000;
                     mtnCharge = (getWithdrawMtn(500000) * divident) + getWithdrawMtn(extra);
 
                 } else {
@@ -322,8 +384,8 @@ public class Calculate {
                 break;
             case "send":
                 if (mtnValue > 1000000) {
-                    int divident = mtnValue / 1000000;
-                    int extra = mtnValue % 1000000;
+                    long divident = mtnValue / 1000000;
+                    long extra = mtnValue % 1000000;
                     mtnCharge = (getSendingMtn(1000000) * divident) + getSendingMtn(extra);
 
                 } else {
@@ -331,10 +393,10 @@ public class Calculate {
                 }
                 break;
             case "sendnone":
-                if (mtnValue > 500001) {
-                    int divident = mtnValue / 500001;
-                    int extra = mtnValue % 500001;
-                    mtnCharge = (getNonTransferMTN(500001) * divident) + getNonTransferMTN(extra);
+                if (mtnValue > 500000) {
+                    long divident = mtnValue / 500000;
+                    long extra = mtnValue % 500000;
+                    mtnCharge = (getNonTransferMTN(500000) * divident) + getNonTransferMTN(extra);
 
                 } else {
                     mtnCharge = getNonTransferMTN(mtnValue);
@@ -346,34 +408,34 @@ public class Calculate {
         return mtnCharge;
     }
 
-    public int getOrangeCharge() {
-        setOrangeTax((int) (getOrangeValue() * 0.2/100));
+    public long getOrangeCharge() {
+        setOrangeTax((long) (getOrangeValue() * 0.2/100));
         switch (status) {
             case "withdraw":
-                if (orangeValue > 500001) {
-                    int divident = orangeValue / 500001;
-                    int extra = orangeValue % 500001;
-                    OrangeCharge = (getWithdrawCharge(500001) * divident) + getWithdrawCharge(extra);
+                if (orangeValue > 500000) {
+                    long divident = orangeValue / 500000;
+                    long extra = orangeValue % 500000;
+                    OrangeCharge = (getWithdrawCharge(500000) * divident) + getWithdrawCharge(extra);
 
                 } else {
                     OrangeCharge = getWithdrawCharge(orangeValue);
                 }
                 break;
             case "send":
-                if (orangeValue > 500001) {
-                    int divident = orangeValue / 500001;
-                    int extra = orangeValue % 500001;
-                    OrangeCharge = (getSendingCharge(500001) * divident) + getSendingCharge(extra);
+                if (orangeValue > 1000000) {
+                    long divident = orangeValue / 1000000;
+                    long extra = orangeValue % 1000000;
+                    OrangeCharge = (getSendingCharge(1000000) * divident) + getSendingCharge(extra);
 
                 } else {
                     OrangeCharge = getSendingCharge(orangeValue);
                 }
                 break;
             case "sendnone":
-                if (orangeValue > 500001) {
-                    int divident = orangeValue / 500001;
-                    int extra = orangeValue % 500001;
-                    OrangeCharge = (getNonTransferOrange(500001) * divident) + getNonTransferOrange(extra);
+                if (orangeValue > 500000) {
+                    long divident = orangeValue / 500000;
+                    long extra = orangeValue % 500000;
+                    OrangeCharge = (getNonTransferOrange(500000) * divident) + getNonTransferOrange(extra);
 
                 } else {
                     OrangeCharge = getNonTransferOrange(orangeValue);
@@ -386,24 +448,24 @@ public class Calculate {
 
     }
 
-    public int getEuCharge(){
+    public long getEuCharge(){
 
         switch (status) {
             case "withdraw":
-                if (euValue > 500001) {
-                    int divident = euValue / 500001;
-                    int extra = euValue % 500001;
-                    euCharge = (getWithdrawEu(500001) * divident) + getWithdrawEu(extra);
+                if (euValue > 500000) {
+                    long divident = euValue / 500000;
+                    long extra = euValue % 500000;
+                    euCharge = (getWithdrawEu(500000) * divident) + getWithdrawEu(extra);
 
                 } else {
                     euCharge = getWithdrawEu(euValue);
                 }
                 break;
             case "send":
-                if (euValue > 500001) {
-                    int divident = euValue / 500001;
-                    int extra = euValue % 500001;
-                    euCharge = (getSendingEU(500001) * divident) + getSendingEU(extra);
+                if (euValue > 500000) {
+                    long divident = euValue / 500000;
+                    long extra = euValue % 500000;
+                    euCharge = (getSendingEU(500000) * divident) + getSendingEU(extra);
 
                 } else {
                     euCharge = getSendingEU(euValue);
@@ -412,10 +474,10 @@ public class Calculate {
 
 
             case "sendnone":
-                if (euValue > 500001) {
-                    int divident = euValue / 500001;
-                    int extra = euValue % 500001;
-                    euCharge = (getNonTransferEU(500001) * divident) + getNonTransferEU(extra);
+                if (euValue > 500000) {
+                    long divident = euValue / 500000;
+                    long extra = euValue % 500000;
+                    euCharge = (getNonTransferEU(500000) * divident) + getNonTransferEU(extra);
 
                 } else {
                     euCharge = getNonTransferEU(euValue);
@@ -428,7 +490,7 @@ return euCharge;
     }
 
 
-    public void setCharge(int OrangeCharge) {
+    public void setCharge(long OrangeCharge) {
         this.OrangeCharge = OrangeCharge;
     }
 
@@ -440,32 +502,32 @@ return euCharge;
         this.status = status;
     }
 
-    public int getEuTax() {
+    public long getEuTax() {
         return euTax;
     }
 
-    public void setEuTax(int euTax) {
+    public void setEuTax(long euTax) {
         this.euTax = euTax;
     }
 
-    public int getEuValue() {
+    public long getEuValue() {
         return euValue;
     }
 
-    public void setEuValue(int euValue) {
+    public void setEuValue(long euValue) {
         this.euValue = euValue;
     }
 
-    public int getEuTotal() {
+    public long getEuTotal() {
         return euCharge + euValue;
     }
 
-    public void setEuTotal(int euTotal) {
+    public void setEuTotal(long euTotal) {
         this.euTotal = euTotal;
     }
 
 
-    public void setEuCharge(int euCharge) {
+    public void setEuCharge(long euCharge) {
         this.euCharge = euCharge;
     }
 

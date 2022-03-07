@@ -18,7 +18,7 @@ public class ConvertService {
         convert.setFrom(from);
         convert.setTo(to);
         convert.getConvertedValue(amount,from,to);
-        return List.of(new Convert(convert.getAmount(), convert.getResults(),convert.getFrom(),convert.getTo()));
+        return List.of(new Convert(convert.getAmount(), convert.getResults(),convert.getFrom(),convert.getTo(),false));
     }
 
 
